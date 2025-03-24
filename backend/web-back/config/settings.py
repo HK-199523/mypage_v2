@@ -21,6 +21,9 @@ PROJECT_DIR = os.path.basename(BASE_DIR)
 # .envの読み込み
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
+MEDIA_URL = '/media/'  
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -36,6 +39,10 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    # 3rd party
+    'corsheaders',
+    'rest_framework',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,24 +50,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-        # 3rd party
-    'rest_framework',
-    'corsheaders',
-
     # Local
     'mypage.apps.MypageConfig',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'corsheaders.middleware.CorsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -141,4 +145,61 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:8080',
 )
 '''
-CSRF_TRUSTED_ORIGINS = ['http://localhost:8080']
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost',
+    'http://localhost:8080',
+    'http://localhost:3000'
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost',
+    'http://localhost:8080',
+    'http://localhost:3000'
+]
+
+CORS_ALLOW_METHODS = [  # 許可するHTTPメソッド
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS",
+]
+
+CORS_ALLOW_HEADERS = [  # 許可するヘッダー
+    "Authorization",
+    "Content-Type",
+    "X-CSRFToken",
+]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Gmailの場合
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'maybe2809me@gmail.com'
+EMAIL_HOST_PASSWORD = 'kzic tuma wwdp lapb'  # アプリパスワードを使用
+DEFAULT_FROM_EMAIL = 'maybe2809me@gmail.com'
+
+#ログ設定→起動したけどエラーになるためコメントアウト
+'''
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+'''

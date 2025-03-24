@@ -1,0 +1,13 @@
+{
+    "name": "React App in Docker",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "react-app",
+    "workspaceFolder": "/usr/src/app",
+    "settings": {
+      "terminal.integrated.defaultProfile.linux": "bash"
+    },
+    "extensions": [
+      "dbaeumer.vscode-eslint",  // 必要に応じて拡張を追加
+      "esbenp.prettier-vscode"
+    ]
+}
