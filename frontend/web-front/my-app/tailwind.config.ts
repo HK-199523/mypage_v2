@@ -7,6 +7,9 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    "bg-white"
+  ],
   theme: {
     extend: {
       backgroundImage: {
@@ -20,6 +23,39 @@ const config: Config = {
       fontFamily: {
         zen: ['Zen Kurenaido', 'sans-serif'], // カスタムフォントを登録
       },
+      animation: {
+        "tracking-in-expand": "tracking-in-expand 3s cubic-bezier(0.215, 0.610, 0.355, 1.000)   both"
+      },
+      keyframes: {
+        "tracking-in-expand": {
+            "0%": {
+                "letter-spacing": "-.5em",
+                opacity: "0"
+            },
+            "40%": {
+                opacity: ".6"
+            },
+            to: {
+                opacity: "1"
+            }
+        },
+        "accordion-down": {
+          "from": {
+            "height": "0"
+          },
+          "to": {
+            "height": "var(--radix-accordion-content-height)"
+          }
+        },
+        "accordion-up": {
+          "from": {
+            "height": "var(--radix-accordion-content-height)"
+          },
+          "to": {
+            "height": "0"
+          }
+        }
+      }
     },
       colors: {
             "border": "hsl(var(--border))",
@@ -62,22 +98,7 @@ const config: Config = {
             "sm": "calc(var(--radius) - 4px)"
           },
       keyframes: {
-            "accordion-down": {
-              "from": {
-                "height": "0"
-              },
-              "to": {
-                "height": "var(--radix-accordion-content-height)"
-              }
-            },
-            "accordion-up": {
-              "from": {
-                "height": "var(--radix-accordion-content-height)"
-              },
-              "to": {
-                "height": "0"
-              }
-            }
+
           }
 },
   plugins: [require("tailwindcss-animate")],

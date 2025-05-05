@@ -144,7 +144,7 @@ export const BurgerIcon = ({
   const common = "w-full absolute pointer-events-none";
   return (
     <div
-      className={cn("burger-wrapper z-10000 fixed top-4 right-4 cursor-pointer p-1.5 md:hidden", className)}
+      className={cn("burger-wrapper fixed top-4 right-4 cursor-pointer p-1.5 md:hidden", className)}
       onClick={() => setOpen(!open)}
     >
       <div className="relative flex w-10 h-8 flex-col justify-between cursor-pointer">
@@ -197,7 +197,7 @@ export const BurgerMenu = ({
   setOpen,
   width = 300,
   backgroundColor = "#fff",
-  className = "md:hidden",
+  className = "z-[100] md:hidden",
   direction = "right",
 }: BurgerMenuType) => {
   useEffect(() => {
@@ -217,12 +217,12 @@ export const BurgerMenu = ({
       )}
     >
       <div
-        className="fixed left-0 top-0 z-90 h-screen w-screen bg-black/30 backdrop-blur transition-opacity duration-300"
+        className="fixed left-0 top-0 h-screen w-screen bg-black/30 backdrop-blur transition-opacity duration-300"
         onClick={() => setOpen(false)}
       />
       <div
         className={cn(
-          "absolute z-90 h-screen overflow-y-auto shadow-[0_6px_30px_-4px_rgba(17,33,95,0.2)] transition-all duration-300",
+          "absolute h-screen overflow-y-auto shadow-[0_6px_30px_-4px_rgba(17,33,95,0.2)] transition-all duration-300",
           open
             ? direction === "left"
               ? "left-0"
