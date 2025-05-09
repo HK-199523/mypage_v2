@@ -52,6 +52,7 @@ INSTALLED_APPS = [
 
     # Local
     'mypage.apps.MypageConfig',
+    'mypage.tests'
 ]
 
 MIDDLEWARE = [
@@ -174,12 +175,13 @@ CORS_ALLOW_HEADERS = [  # 許可するヘッダー
     "X-CSRFToken",
 ]
 
+EMAIL_SUBJECT_PREFIX = '[Send_Mail]'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # Gmailの場合
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'maybe2809me@gmail.com'
-EMAIL_HOST_PASSWORD = 'kzic tuma wwdp lapb'  # アプリパスワードを使用
+EMAIL_HOST_PASSWORD = 'hvpw zuac ptoq wwoh'  # アプリパスワードを使用
 DEFAULT_FROM_EMAIL = 'maybe2809me@gmail.com'
 
 #ログ設定→起動したけどエラーになるためコメントアウト

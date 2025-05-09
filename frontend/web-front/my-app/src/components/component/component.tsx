@@ -614,12 +614,14 @@ const zenKurenaido = Zen_Kurenaido({
   weight: "400", // 必須のプロパティを追加
   subsets: ['latin'],
   display: 'swap',
+  preload: false
 });
 
 const russoOne = Russo_One({
   weight:"400",
   subsets: ['latin'],
   display: 'swap',
+  preload: false
 }); 
 
 

@@ -1,29 +1,27 @@
 # Create your views here.
 from django.shortcuts import render
 from rest_framework import generics
-#from .models import Todo
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_protect
 from django.utils.decorators import method_decorator
+from .models import T_Article, T_Article_Detail, T_Tag_Detail, M_Tag, T_News
 import json
 from django.views.decorators.csrf import csrf_exempt #一時的に設定。後で削除。
 
 
 
 
-
-#@require_POST
-#@method_decorator(csrf_protect, name='dispatch')
-@csrf_exempt
 def send_email_view(request):
+    print(request.body)
     if request.method == 'POST':
         print("OK1\n")
         try:
             data = json.loads(request.body)
             name = data.get('name')
             email = data.get('email')
+            print("送信先:", email)
             message = '送信メッセージ：' + '\n' + data.get('message')
             print("OK2\n")
             send_mail(
@@ -48,5 +46,26 @@ def send_email_view(request):
             print("OK4\n")
             return JsonResponse({'message': 'メールが送信されました！'}, status=200)
         except Exception as e:
+            print("SendMail Error:", e)
             return JsonResponse({'error': str(e)}, status=500)
     return JsonResponse({'error': 'Invalid request'}, status=400)
+
+def get_news_view(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        if data['record_num'] == 3:
+            try:
+                news = T_News.objects.order_by('-Create_date')[:3]
+                res = list(news.values())
+                print(JsonResponse(res, safe=False, status=200))
+                return JsonResponse(res, safe=False, status=200)
+            except Exception as e:
+                print('DB Error')  
+        else:
+            try:
+                news = T_News.objects.order_by('-Create_date')
+                res = list(news.values())
+                print(JsonResponse(res, safe=False, status=200))
+                return JsonResponse(res, safe=False, status=200)
+            except Exception as e:
+                print('DB Error')

@@ -37,7 +37,7 @@ class T_Tag_Detail(models.Model):
         def __str__(self):
             return self.constraints
         
-class M_Tag:
+class M_Tag(models.Model):
     Tag_id = models.AutoField(primary_key=True)
     Tag_name = models.CharField( max_length=50)
     def __str__(self):
