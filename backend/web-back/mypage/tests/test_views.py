@@ -1,7 +1,8 @@
-from django.test import TestCase, Client
+from django.test import TestCase, Client, RequestFactory
 from django.urls import reverse
 from unittest.mock import patch
 from ..models import T_Article, T_Article_Detail, T_Tag_Detail, M_Tag, T_News
+from ..views import get_tech_news_view
 import json
 
 class SendEmailViewTest(TestCase):
@@ -57,11 +58,11 @@ class SendEmailViewTest(TestCase):
 
 class GetNewsTest(TestCase):
     def setUp(self):
-        T_News.objects.create(Title='Test A', News_body='testest')
-        T_News.objects.create(Title='Test B', News_body='testest')
-        T_News.objects.create(Title='Test C', News_body='testest')
-        T_News.objects.create(Title='Test D', News_body='testest')
-        T_News.objects.create(Title='Test E', News_body='testest')
+        T_News.objects.create(Title='Test A', News_body='testesttestesttest2021')
+        T_News.objects.create(Title='Test B', News_body='testesttestesttest2021')
+        T_News.objects.create(Title='Test C', News_body='testesttestesttest2021')
+        T_News.objects.create(Title='Test D', News_body='testesttestesttest2021')
+        T_News.objects.create(Title='Test E', News_body='testesttestesttest2021')
 
     def test_get_news_3record(self):
         data1 = {
@@ -90,3 +91,88 @@ class GetNewsTest(TestCase):
         res2 = response2.json()
         print(res2)
         print(len(res2))
+
+class GetTechNewsViewTests(TestCase):
+
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    # 1. POST 以外のメソッド
+    def test_get_method_returns_none(self):
+        req = self.factory.get('/tech')
+        response = get_tech_news_view(req)
+        self.assertIsNone(response)
+
+    # ---------------------------------------------------------
+    # 2. POST + record_num == 10 正常系
+    # ---------------------------------------------------------
+    @patch("mypage.views.T_Article.objects")
+    def test_post_recordnum_10_success(self, mock_article):
+        # queryset を空で返すようにセット
+        mock_article.select_related.return_value.prefetch_related.return_value.filter.return_value.order_by.return_value.__getitem__.return_value = []
+
+        payload = {"record_num": 10}
+        req = self.factory.post(
+            "/tech",
+            data=json.dumps(payload),
+            content_type="application/json"
+        )
+
+        res = get_tech_news_view(req)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(json.loads(res.content), [])
+
+    # ---------------------------------------------------------
+    # 3. POST + record_num != 10 正常系
+    # ---------------------------------------------------------
+    @patch("mypage.views.T_Article.objects")
+    def test_post_recordnum_not_10_success(self, mock_article):
+        mock_article.select_related.return_value.prefetch_related.return_value.filter.return_value.order_by.return_value.__getitem__.return_value = []
+
+        payload = {"record_num": 5}
+        req = self.factory.post(
+            "/tech",
+            data=json.dumps(payload),
+            content_type="application/json"
+        )
+
+        res = get_tech_news_view(req)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(json.loads(res.content), [])
+
+    # ---------------------------------------------------------
+    # 4. POST + record_num == 10 例外発生 → 500
+    # ---------------------------------------------------------
+    @patch("mypage.views.T_Article.objects")
+    def test_post_recordnum_10_exception(self, mock_article):
+        # DB エラーを強制発生
+        mock_article.select_related.side_effect = Exception("DB Error")
+
+        payload = {"record_num": 10}
+        req = self.factory.post(
+            "/tech",
+            data=json.dumps(payload),
+            content_type="application/json"
+        )
+
+        res = get_tech_news_view(req)
+        self.assertEqual(res.status_code, 500)
+        self.assertEqual(json.loads(res.content), {"error": "DB Error"})
+
+    # ---------------------------------------------------------
+    # 5. POST + record_num != 10 例外発生 → 500
+    # ---------------------------------------------------------
+    @patch("mypage.views.T_Article.objects")
+    def test_post_recordnum_not_10_exception(self, mock_article):
+        mock_article.select_related.side_effect = Exception("DB Error")
+
+        payload = {"record_num": 3}
+        req = self.factory.post(
+            "/tech",
+            data=json.dumps(payload),
+            content_type="application/json"
+        )
+
+        res = get_tech_news_view(req)
+        self.assertEqual(res.status_code, 500)
+        self.assertEqual(json.loads(res.content), {"error": "DB Error"})
