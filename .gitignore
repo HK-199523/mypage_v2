@@ -1,0 +1,39 @@
+# Windows予約デバイス名ファイル
+nul
+backend/web-back/nul
+
+# MySQLデータボリューム（バイナリファイルはGit管理不要）
+mysql_volume/
+
+# Claude Code設定
+.claude/
+
+# メディアファイル（アップロード画像）
+backend/web-back/media/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+
+# 環境変数
+.env
+.env.*
+
+# Node.js
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
