@@ -40,7 +40,6 @@ export default function LoginPage() {
       // ログイン成功
       localStorage.setItem("isAuthenticated", "true");
       localStorage.setItem("username", response.data.username);
-      localStorage.setItem("role", response.data.role);
 
       router.push("/admin");
     } catch (error: any) {
@@ -95,6 +94,13 @@ export default function LoginPage() {
             {loading ? "ログイン中..." : "ログイン"}
           </Button>
         </form>
+
+        <div className="mt-4 text-sm text-gray-600 text-center">
+          <p>デフォルト管理者アカウント</p>
+          <p className="text-xs mt-1">
+            ユーザー名: admin / パスワード: admin123
+          </p>
+        </div>
       </div>
     </div>
   );
