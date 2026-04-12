@@ -67,7 +67,7 @@ const Main = ({news, techNews }:Props ) => {
                                     <div className="mt-auto flex items-end justify-between">
                                         <div className="flex items-center gap-2">
                                         <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-gray-100">
-                                            <img src="/techBlog/news/かわいい柴犬の笑顔.png" loading="lazy" alt="Photo by Brock Wegner" className="h-full w-full object-cover object-center" />
+                                            <img src="/cuteShibaSmile.png" loading="lazy" alt="Photo by Brock Wegner" className="h-full w-full object-cover object-center" />
                                         </div>
                                         <div>
                                             <span className="block text-indigo-500">Chacon Dog</span>

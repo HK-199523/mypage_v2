@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+
+// ★ AdSense審査通過後にご自身のPublisher IDに差し替えてください
+const ADSENSE_PUBLISHER_ID = "ca-pub-XXXXXXXXXXXXXXXX";
 
 export const metadata: Metadata = {
   title: "Chacon 公式",
@@ -17,6 +21,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <head>
+        {ADSENSE_PUBLISHER_ID !== "ca-pub-XXXXXXXXXXXXXXXX" && (
+          <Script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_PUBLISHER_ID}`}
+            crossOrigin="anonymous"
+            strategy="afterInteractive"
+          />
+        )}
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );
