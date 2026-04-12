@@ -96,10 +96,6 @@ export default function LoginPage() {
         </form>
 
         <div className="mt-4 text-sm text-gray-600 text-center">
-          <p>デフォルト管理者アカウント</p>
-          <p className="text-xs mt-1">
-            ユーザー名: admin / パスワード: admin123
-          </p>
         </div>
       </div>
     </div>
