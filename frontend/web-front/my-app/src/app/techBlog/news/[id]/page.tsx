@@ -25,7 +25,7 @@ export default function NewsDetailPage() {
         if (!id) return;
         const fetchNews = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/get_news/${id}/`);
+                const response = await axios.get(`/api/get_news/${id}/`);
                 setNews(response.data);
             } catch (err) {
                 console.error('ニュース詳細取得エラー:', err);
@@ -55,7 +55,7 @@ export default function NewsDetailPage() {
                         <p className="mb-6 text-sm text-gray-400">{news.Create_date}</p>
                         <div className="mb-8 overflow-hidden rounded-lg">
                             <img
-                                src={`http://localhost:8080${news.Image}`}
+                                src={`${news.Image}`}
                                 alt={news.Title}
                                 className="w-full h-auto object-cover"
                             />

@@ -54,7 +54,7 @@ const Main = ({news, techNews }:Props ) => {
                             { news.map((item) =>(
                                 <div className="flex flex-col overflow-hidden rounded-lg border bg-white" key={item.Id}>
                                     <a href={`/techBlog/news/${item.Id}`} className="group relative block h-28 overflow-hidden bg-gray-100 md:h-64">
-                                        <img src={`http://localhost:8080${item.Image}`} loading="lazy" alt="Photo by Minh Pham" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                                        <img src={`${item.Image}`} loading="lazy" alt="Photo by Minh Pham" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
                                     </a>
 
                                     <div className="flex flex-1 flex-col p-4 sm:p-6">
@@ -96,7 +96,7 @@ const Main = ({news, techNews }:Props ) => {
                                         
                                         <div key={item.Id} className="flex flex-col items-center overflow-hidden rounded-lg border md:flex-row">
                                             <a href={`/techBlog/article/${item.Id}`} className="group relative hidden md:block h-48 w-full shrink-0 self-start overflow-hidden bg-gray-100 md:h-full md:w-32 lg:w-48">
-                                                <img src={`http://localhost:8080${item.Image}`} loading="lazy" alt="Photo by Minh Pham" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                                                <img src={`${item.Image}`} loading="lazy" alt="Photo by Minh Pham" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
                                             </a>
 
                                             <div className="flex flex-col gap-2 p-4 lg:p-6 flex-1">

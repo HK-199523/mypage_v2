@@ -26,11 +26,12 @@ services:
     volumes:
       - static_volume:/code/staticfiles # <-- bind the static volume
     ports:
-      - "8080:80"
+      - "127.0.0.1:8080:80"
     depends_on:
       - web-back
     networks:
       - backend_network
+      - frontend_network
   db:
     build: ./mysql
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci

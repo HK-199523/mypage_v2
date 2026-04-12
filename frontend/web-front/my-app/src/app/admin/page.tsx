@@ -25,7 +25,7 @@ export default function AdminPage() {
   const [role, setRole] = useState<Role>("viewer");
   const router = useRouter();
 
-  const API_BASE_URL = "http://localhost:8080/api";
+  const API_BASE_URL = "/api";
 
   const canWrite = role === "superuser" || role === "staff";
 

@@ -44,7 +44,7 @@ export default function TagArticlesPage() {
             setLoading(true);
             setError(false);
             try {
-                const response = await axios.get(`http://localhost:8080/api/get_articles_by_tag/${tagId}/`);
+                const response = await axios.get(`/api/get_articles_by_tag/${tagId}/`);
                 setTagName(response.data.tag.Tag_name);
                 setArticles(response.data.articles);
             } catch (err) {
@@ -82,7 +82,7 @@ export default function TagArticlesPage() {
                             <div key={item.Id} className="flex flex-col items-center overflow-hidden rounded-lg border md:flex-row">
                                 <a href={`/techBlog/article/${item.Id}`} className="group relative hidden md:block h-48 w-full shrink-0 self-start overflow-hidden bg-gray-100 md:h-full md:w-32 lg:w-48">
                                     {item.Image && (
-                                        <img src={`http://localhost:8080${item.Image}`} loading="lazy" alt={item.Title} className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                                        <img src={`${item.Image}`} loading="lazy" alt={item.Title} className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
                                     )}
                                 </a>
 

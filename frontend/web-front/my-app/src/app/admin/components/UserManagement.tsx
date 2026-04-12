@@ -26,7 +26,7 @@ const ROLE_BADGE: Record<string, string> = {
   viewer: "bg-gray-100 text-gray-800",
 };
 
-const API_BASE_URL = "http://localhost:8080/api";
+const API_BASE_URL = "/api";
 
 export default function UserManagement() {
   const [users, setUsers] = useState<UserItem[]>([]);

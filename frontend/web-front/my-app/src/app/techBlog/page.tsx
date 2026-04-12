@@ -53,7 +53,7 @@ export default function Tech() {
         const getNews = async () => {
             try {
                 const csrfToken = getCsrfToken();
-                const response = await axios.post('http://localhost:8080/api/get_news/',
+                const response = await axios.post('/api/get_news/',
                     {
                         record_num:3
                     },{
@@ -81,7 +81,7 @@ export default function Tech() {
             try {
                 const csrfToken = getCsrfToken();
                 const response = await axios.post(
-                    'http://localhost:8080/api/get_tech_news/',
+                    '/api/get_tech_news/',
                     {
                         record_num: 10
                     },

@@ -23,7 +23,7 @@ export default function NewsManagement({ canWrite = false }: Props) {
   const [editingNews, setEditingNews] = useState<NewsItem | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const API_BASE_URL = "http://localhost:8080/api";
+  const API_BASE_URL = "/api";
 
   // ニュース一覧を取得
   const fetchNews = async () => {
@@ -145,7 +145,7 @@ export default function NewsManagement({ canWrite = false }: Props) {
                   {item.Image && (
                     <div className="w-32 h-32 flex-shrink-0">
                       <img
-                        src={`http://localhost:8080${item.Image}`}
+                        src={`${item.Image}`}
                         alt={item.Title}
                         className="w-full h-full object-cover rounded"
                       />

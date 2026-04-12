@@ -33,7 +33,7 @@ export default function ArticleDetailPage() {
         if (!id) return;
         const fetchArticle = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/get_article/${id}/`);
+                const response = await axios.get(`/api/get_article/${id}/`);
                 setArticle(response.data);
             } catch (err) {
                 console.error('記事詳細取得エラー:', err);
@@ -78,7 +78,7 @@ export default function ArticleDetailPage() {
                         {article.Article_image && (
                             <div className="mb-8 overflow-hidden rounded-lg">
                                 <img
-                                    src={`http://localhost:8080${article.Article_image}`}
+                                    src={`${article.Article_image}`}
                                     alt={article.Title}
                                     className="w-full h-auto object-cover"
                                 />

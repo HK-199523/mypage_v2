@@ -45,7 +45,7 @@ export default function ArticleForm({
   const [availableTags, setAvailableTags] = useState<Tag[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const API_BASE_URL = "http://localhost:8080/api";
+  const API_BASE_URL = "/api";
 
   // タグ一覧を取得
   const fetchTags = async () => {
@@ -272,7 +272,7 @@ export default function ArticleForm({
           <div className="mt-2">
             <p className="text-sm text-gray-600 mb-1">現在の画像:</p>
             <img
-              src={`http://localhost:8080${article.Article_image}`}
+              src={`${article.Article_image}`}
               alt="現在の画像"
               className="w-32 h-32 object-cover rounded"
             />

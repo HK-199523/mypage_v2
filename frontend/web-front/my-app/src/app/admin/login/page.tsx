@@ -13,7 +13,7 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  const API_BASE_URL = "http://localhost:8080/api";
+  const API_BASE_URL = "/api";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

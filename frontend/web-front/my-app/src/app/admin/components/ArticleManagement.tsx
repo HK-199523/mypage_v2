@@ -33,7 +33,7 @@ export default function ArticleManagement({ canWrite = false }: Props) {
   const [editingArticle, setEditingArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const API_BASE_URL = "http://localhost:8080/api";
+  const API_BASE_URL = "/api";
 
   // 記事一覧を取得
   const fetchArticles = async () => {
@@ -166,7 +166,7 @@ export default function ArticleManagement({ canWrite = false }: Props) {
                   {article.Article_image && (
                     <div className="w-32 h-32 flex-shrink-0">
                       <img
-                        src={`http://localhost:8080${article.Article_image}`}
+                        src={`${article.Article_image}`}
                         alt={article.Title}
                         className="w-full h-full object-cover rounded"
                       />

@@ -187,7 +187,7 @@ export function Component() {
     e.preventDefault();
     try {
         const csrfToken = getCsrfToken();
-        const response = await axios.post('http://localhost:8080/api/send_email/', {
+        const response = await axios.post('/api/send_email/', {
           name:formValues.name,
           email: formValues.email,
           message: formValues.message

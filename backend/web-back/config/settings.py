@@ -161,13 +161,17 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'http://localhost',
     'http://localhost:8080',
-    'http://localhost:3000'
+    'http://localhost:3000',
+    'http://chacondog.com',
+    'https://chacondog.com',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost',
     'http://localhost:8080',
-    'http://localhost:3000'
+    'http://localhost:3000',
+    'http://chacondog.com',
+    'https://chacondog.com',
 ]
 
 CORS_ALLOW_METHODS = [  # 許可するHTTPメソッド

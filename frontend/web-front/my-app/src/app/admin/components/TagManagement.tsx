@@ -21,7 +21,7 @@ export default function TagManagement({ canWrite = false }: Props) {
   const [editTagName, setEditTagName] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const API_BASE_URL = "http://localhost:8080/api";
+  const API_BASE_URL = "/api";
 
   // タグ一覧を取得
   const fetchTags = async () => {

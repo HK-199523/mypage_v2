@@ -26,7 +26,7 @@ export default function NewsForm({ news, onClose, onSuccess }: NewsFormProps) {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const API_BASE_URL = "http://localhost:8080/api";
+  const API_BASE_URL = "/api";
 
   // ニュースデータをフォームに設定
   useEffect(() => {
@@ -156,7 +156,7 @@ export default function NewsForm({ news, onClose, onSuccess }: NewsFormProps) {
           <div className="mt-2">
             <p className="text-sm text-gray-600 mb-1">現在の画像:</p>
             <img
-              src={`http://localhost:8080${news.Image}`}
+              src={`${news.Image}`}
               alt="現在の画像"
               className="w-32 h-32 object-cover rounded"
             />
