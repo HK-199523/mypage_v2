@@ -37,6 +37,7 @@ import { Link as ScrollLink } from "react-scroll";
 
 import '@splidejs/splide/css'; // デフォルトのテーマを読み込んでいます（コアスタイルのみ読み込む設定も可能）
 import { Slider1, Slider2 } from "../ui/slider"
+import GoogleAd from "@/app/techBlog/components/GoogleAd"
 
 const ScrollLinkAny = ScrollLink as any;
 
@@ -410,6 +411,11 @@ export function Component() {
                 </Link>
               </div>
             </div>
+          </div>
+        </section>
+        <section className="py-8 bg-[#ffd700]">
+          <div className="container mx-auto px-4 md:px-6 max-w-3xl">
+            <GoogleAd />
           </div>
         </section>
         <section id="mailSection" className="py-12 md:py-20 lg:py-28 bg-[#ffd700]">
