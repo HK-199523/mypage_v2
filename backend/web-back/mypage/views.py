@@ -75,6 +75,7 @@ def get_news_detail_view(request, pk):
     return Response(data)
 
 
+@csrf_exempt
 def get_news_view(request):
     if request.method == 'POST':
         data = json.loads(request.body)
@@ -148,6 +149,7 @@ def get_article_detail_view(request, pk):
     return Response(data)
 
 
+@csrf_exempt
 def get_tech_news_view(request):
     if request.method == 'POST':
         data = json.loads(request.body)
